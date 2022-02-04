@@ -1,9 +1,11 @@
 const express = require('express')
 const { cloudinary } = require('./utils/cloudinary');
 require('dotenv').config();
-const fs = require('fs')
-const app = express()
+const cors = require('cors');
+const fs = require('fs');
 
+const app = express()
+app.use(cors())
 
 app.use(express.static('public'));
 app.use(express.json({ limit: '50mb' }));
@@ -20,7 +22,7 @@ app.get('/api/images/:url', async (req, res) => {
         .execute();
 
     const publicIds = resources.map((file) => file.url);
-    res.send(publicIds);
+    res.json(publicIds);
 
 });
 
@@ -41,9 +43,11 @@ app.post('/api/upload',upload.single("images"), async (req, res) => {
         fs.unlinkSync(filepath);
 
         console.log(uploadResponse);
-        res.json({ msg: 'uploaded' });
+        
+        res.json(uploadResponse.url);
+        
     } catch (err) {
-        console.error(err);
+        console.error(err);res.json({ msg: 'uploaded' });
         res.status(500).json({ err: 'Something went wrong' });
     }
 });

@@ -1,3 +1,13 @@
 <!-- In your view add the advanced-image component and pass your Cloudinary image. -->
 <h1>hi</h1>
 <advanced-image [cldImg]="img"></advanced-image>
+
+
+<form [formGroup]="myForm" (ngSubmit)="uploadImage()">  
+    <label class="form-label" for="customFile">Default file input example</label>
+    <input type="file" class="form-control" name="images" id="customFile" (change)="selectThisImage($event)"/>
+    <button type="submit">upload</button>
+</form>
+
+<div class="img-wrapper" style="width: 300px; height: 300px">
+</div>

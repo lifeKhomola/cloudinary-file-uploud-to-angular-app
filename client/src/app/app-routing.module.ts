@@ -4,7 +4,8 @@ import { ImageUploadComponent } from './components/image-upload/image-upload.com
 
 
 const routes: Routes = [
-  {path: 'image', component:ImageUploadComponent}
+  {path: 'image', component:ImageUploadComponent},
+  {path: '',redirectTo: 'images'}
 ];
 
 @NgModule({
