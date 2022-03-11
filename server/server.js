@@ -26,6 +26,17 @@ app.get('/api/images/:url', async (req, res) => {
 
 });
 
+app.get('/api/images',async (req, res) => {
+    const { resources } = await cloudinary.search
+    .expression('folder:images')
+    .sort_by('public_id', 'desc')
+    .max_results(30)
+    .execute();
+    
+     
+ res.json(resources);
+})
+
 
 const multer  = require('multer')
 const upload = multer({ dest: 'images/' })

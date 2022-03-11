@@ -75,8 +75,6 @@ export class ImageUploadComponent implements OnInit {
      this.img
     .resize(thumbnail().width(400).height(400).gravity(focusOn(FocusOn.face()))) // Crop the image, focusing on the face.
     .roundCorners(byRadius(20));    // Round the corners.
-    
-
     this.myForm = this.fb.group({
       images: ''
     })
